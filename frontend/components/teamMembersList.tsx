@@ -46,7 +46,11 @@ const TeamMembersList = ({ developers }) => {
                 </th>
                 <td className="px-6 py-4 whitespace-pre">
                   {dev.attributes.skills.data.map((skill) => (
-                    <Tag text={skill.attributes.name} isRandomColour />
+                    <Tag
+                      key={skill.id}
+                      text={skill.attributes.name}
+                      isRandomColour
+                    />
                   ))}
                 </td>
                 <td className="px-6 py-4 min-w-[300px]">
