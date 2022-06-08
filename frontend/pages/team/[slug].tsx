@@ -6,6 +6,7 @@ import Seo from "../../components/seo";
 import TeamMembersList from "../../components/teamMembersList";
 import { fetchAPI } from "../../lib/api";
 import { getStrapiMedia } from "../../lib/media";
+import BarChart from "../../components/barChart";
 
 const Team = ({ team }) => {
   const { name, project, bannerImage, developers } = team.attributes;
@@ -27,6 +28,19 @@ const Team = ({ team }) => {
           </h3>
           <div className="w-[330px] h-[330px] m-auto">
             <RadarChart />
+          </div>
+        </div>
+      ),
+    },
+    {
+      name: "Devs Level Distribution",
+      content: (
+        <div className="m-auto">
+          <h3 className="text-xl font-medium text-gray-900">
+            Developers Level Distribution
+          </h3>
+          <div className="w-[405px] h-[330px] m-auto pt-[50px]">
+            <BarChart />
           </div>
         </div>
       ),
