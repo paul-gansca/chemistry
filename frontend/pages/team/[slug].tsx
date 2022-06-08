@@ -55,7 +55,7 @@ const Team = ({ team }) => {
       <Seo seo={seo} />
       <div className="p-4 mb-6 w-full min-h-[400px] bg-white rounded-lg border shadow-md sm:p-8">
         <BackHome />
-        <Carousel slides={slides} />
+        <Carousel slides={slides} isAutoMove autoTime={10000} />
       </div>
       <TeamMembersList developers={developers.data} />
     </div>

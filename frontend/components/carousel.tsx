@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
-const Carousel = ({ slides }) => {
+const Carousel = ({ slides, isAutoMove = false, autoTime = 5000 }) => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef(null);
@@ -13,13 +13,13 @@ const Carousel = ({ slides }) => {
     }
   };
 
-  const moveNext = () => {
+  const moveNext = useCallback(() => {
     if (currentIndex !== slides.length - 1) {
       setCurrentIndex((prevState) => prevState + 1);
     } else {
       setCurrentIndex(0);
     }
-  };
+  }, [currentIndex, slides.length]);
 
   useEffect(() => {
     if (carousel !== null && carousel.current !== null) {
@@ -32,6 +32,14 @@ const Carousel = ({ slides }) => {
       ? carousel.current.scrollWidth - carousel.current.offsetWidth
       : 0;
   }, []);
+
+  useEffect(() => {
+    let timerId;
+    if (isAutoMove) {
+      timerId = setTimeout(moveNext, autoTime);
+    }
+    return () => clearTimeout(timerId);
+  }, [isAutoMove, moveNext, autoTime]);
 
   return (
     <div className="carousel mx-auto">

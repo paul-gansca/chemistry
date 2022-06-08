@@ -50,6 +50,12 @@ export const data = {
       backgroundColor: "rgb(75, 192, 192)",
       stack: "Stack 0",
     },
+    {
+      label: "QA",
+      data: labels.map(() => Math.floor(Math.random() * 20)),
+      backgroundColor: "rgb(53, 162, 235)",
+      stack: "Stack 0",
+    },
   ],
 };
 
