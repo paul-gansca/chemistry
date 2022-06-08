@@ -1,18 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-// Data
-const data = {
-  resources: [
-    {
-      title: "First",
-    },
-    {
-      title: "Second",
-    },
-  ],
-};
-
-const Carousel = () => {
+const Carousel = ({ slides }) => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef(null);
@@ -21,12 +9,12 @@ const Carousel = () => {
     if (currentIndex > 0) {
       setCurrentIndex((prevState) => prevState - 1);
     } else {
-      setCurrentIndex(data.resources.length - 1);
+      setCurrentIndex(slides.length - 1);
     }
   };
 
   const moveNext = () => {
-    if (currentIndex !== data.resources.length - 1) {
+    if (currentIndex !== slides.length - 1) {
       setCurrentIndex((prevState) => prevState + 1);
     } else {
       setCurrentIndex(0);
@@ -96,13 +84,13 @@ const Carousel = () => {
           ref={carousel}
           className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
         >
-          {data.resources.map((resource) => {
+          {slides.map((slide) => {
             return (
               <div
-                key={resource.title}
-                className="carousel-item  text-center relative min-w-full h-[350px] snap-start"
+                key={slide.name}
+                className="carousel-item  text-center relative min-w-full snap-start"
               >
-                <h1>{resource.title}</h1>
+                {slide.content}
               </div>
             );
           })}
