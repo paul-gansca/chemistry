@@ -38,7 +38,9 @@ const Home = ({ teams, homepage, skills }) => {
               t.attributes.developers.data.some(checkDevHasSkill)
           )
           .filter(
-            (t) => t.attributes.name.toLowerCase().indexOf(searchVal) > -1
+            (t) =>
+              t.attributes.name.toLowerCase().indexOf(searchVal.toLowerCase()) >
+              -1
           )
           .map((t) => (
             <Tile key={t.id} team={{ ...t.attributes }} />
